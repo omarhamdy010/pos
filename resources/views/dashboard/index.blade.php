@@ -1,8 +1,3 @@
-{{--@include('layouts.dashboard.app')--}}
-{{--@section('content')--}}
-{{--@dd('okoioiidfikhgio[[[h sdasdh sdfahsea')--}}
-
-{{--@endsection--}}
 @extends('layouts.dashboard.app')
 
 @section('content')
@@ -11,9 +6,7 @@
 
         <section class="content-header">
 
-            <h1>Blank page
-                    <small>start from here</small>
-            </h1>
+            <h1>{{__('site.dashboard')}}</h1>
 
             <ol class="breadcrumb">
                 <li class="active"><i class="fa fa-dashboard"></i>{{__('site.dashboard')}}</li>
