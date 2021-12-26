@@ -31,15 +31,11 @@ class UserController extends Controller
 //        {
 //            $users = User::whereRoleIs('admin')->latest()->paginate();
 //        }
-        $users = User::whereRoleIs('admin')->Where(function ($q) use ($request) {
-
-            return $q->When($request->search, function ($q) use ($request) {
+        $users = User::whereRoleIs('admin')->When($request->search, function ($q) use ($request) {
 
                 return $q->Where('first_name', 'like', '%' . $request->search . '%')
 
                     ->orWhere('last_name', 'like', '%' . $request->search . '%');
-
-            });
 
         })->latest()->paginate(10);
 
