@@ -72,6 +72,7 @@ class UserController extends Controller
           })->save(public_path('uploads/users_image/'. $request->image->hashName()));
 
           $data['image']= $request->image->hashName();
+
         }
 
         $users = User::create($data);

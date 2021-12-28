@@ -24,7 +24,7 @@ class CategoryController extends Controller
 //            $categories = Category::latest()->paginate(4);
 //        }
         $categories = Category::When($request->search, function ($q) use ($request) {
-            return $q->Where('name', 'like', '%' . $request->search . '%');
+            return $q->whereTranslationLike('name','%' . $request->search . '%');
         })->latest()->paginate(4);
         return view('dashboard.categories.index', compact('categories'));
     }
@@ -59,9 +59,7 @@ class CategoryController extends Controller
         foreach (config('translatable.locales') as $local) {
             $rules += [$local . 'name' => [Rule::unique('category_translations', 'name')->ignore($category->id, 'category_id')]];
       }
-        $request->validate($rules,
-//            [            'ar.*'=>'required|unique:category_translations,name,'.$category->id,]
-                    );
+        $request->validate($rules);
         $category->update($request->all());
         Session::flash('success', 'site.updated_successfully');
         return redirect()->route('dashboard.categories.index');

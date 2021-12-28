@@ -43,6 +43,8 @@
                                <tr>
                                    <th style="width: 10px">#</th>
                                    <th>{{__('site.name')}}</th>
+                                   <th>{{__('site.products_count')}}</th>
+                                   <th>{{__('site.related_products')}}</th>
                                    <th>{{__('site.action')}}</th>
 
                                </tr>
@@ -52,6 +54,8 @@
                                <tr>
                                    <td>{{$index +1}}</td>
                                    <td>{{$category->name}}</td>
+                                   <td>{{$category->products->count()}}</td>
+                                   <td><a href="{{route('dashboard.products.index' , [ 'category_id'=> $category->id]) }}" class="btn btn-info btn-sm">{{__('site.related_products')}}</a></td>
                                    <td>
                                        @if(auth()->user()->hasPermission('categories_update'))
                                            <a class="btn btn-primary btn-sm" href="{{route('dashboard.categories.edit',$category->id)}}"><i class="fa fa-edit"></i>{{__('site.edit')}}</a>
