@@ -155,6 +155,7 @@ return [
         'name' => 'الاسم',
         'password' => 'كلمة المرور',
         'password_confirmation' => 'تأكيد كلمة المرور',
+        'phone.0' => 'الهاتف',
         'phone' => 'الهاتف',
         'photo' => 'الصورة',
         'price' => 'السعر',

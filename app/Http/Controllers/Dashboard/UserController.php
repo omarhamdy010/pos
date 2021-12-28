@@ -114,8 +114,8 @@ class UserController extends Controller
                 Image::make($request->image)->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/users_image/'. $request->image->hashname()));
+            $data['image']=$request->image->hashname();
         }
-        $data['image']=$request->image->hashname();
 
         $user->update($data);
 
