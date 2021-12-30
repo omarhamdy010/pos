@@ -34,6 +34,7 @@ class ClientController extends Controller
             'phone.0' => 'required',
             'address' => 'required'
         ];
+
         $request->validate($rules);
         $data = $request->all();
         $data['phone']=array_filter($request->phone);

@@ -66,7 +66,7 @@
                                value="{{old('password_confirmation')}}">
                     </div>
                     @php
-                        $models=['users', 'categories','products','clients'];
+                        $models=['users', 'categories','products','clients','orders'];
                         $maps=['create', 'read','update','delete'];
                     @endphp
                     <div class="form-group">

@@ -45,6 +45,7 @@
                                    <th>{{__('site.name')}}</th>
                                    <th>{{__('site.phone')}}</th>
                                    <th>{{__('site.address')}}</th>
+                                   <th>{{__('site.orders')}}</th>
                                    <th>{{__('site.action')}}</th>
 
                                </tr>
@@ -56,6 +57,13 @@
                                    <td>{{$client->name}}</td>
                                    <td>{{implode($client->phone , '/')}}</td>
                                    <td>{{$client->address}}</td>
+                                   <td>
+                                        @if(auth()->user()->hasPermission('orders_create'))
+                                           <a class="btn btn-primary btn-sm" href="{{route('dashboard.clients.orders.create',$client->id)}}">{{__('site.add_order')}}</a>
+                                       @else
+                                           <a class="btn btn-primary btn-sm disabled "  >{{__('site.add_order')}}</a>
+                                       @endif
+                                   </td>
                                    <td>
                                        @if(auth()->user()->hasPermission('clients_update'))
                                            <a class="btn btn-primary btn-sm" href="{{route('dashboard.clients.edit',$client->id)}}"><i class="fa fa-edit"></i>{{__('site.edit')}}</a>
