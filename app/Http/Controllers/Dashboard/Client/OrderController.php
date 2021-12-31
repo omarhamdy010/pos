@@ -26,7 +26,7 @@ class OrderController extends Controller
 
     public function store(Request $request,Client $clients )
     {
-        //
+        dd($request->all());
     }
 
     public function edit(Order $order)

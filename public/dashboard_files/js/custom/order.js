@@ -11,6 +11,7 @@ $(document).ready(function () {
         $(this).removeClass('btn-success').addClass('btn-default disabled');
         var html = `<tr>
         <td>${name}</td>
+        <td><input type="hidden" name="products[]" value="${id}"></td>
         <td><input type="number" name="quanities[]" data-price="${price}" min="1" value="1" class="form-control input-sm product-quantity"></td>
         <td class="product-price">${price}</td>
         <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"> <span class="fa fa-trash"></span></button></td>
@@ -33,7 +34,8 @@ $(document).ready(function () {
     });
     $('body').on('change', '.product-quantity', function (){
         var quantity = Number($(this).val());
-        var unitPrice =$(this).data('price');
+        var unitPrice = parseFloat($(this).data('price').replace(/,/g, ''));
+
         $(this).closest('tr').find('.product-price').html($.number(unitPrice * quantity ,2 ));
         calculate_price();
     });
