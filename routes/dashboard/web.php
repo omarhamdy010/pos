@@ -1,34 +1,34 @@
 <?php
 
 Route::group(
-    ['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
+    ['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
-        Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function (){
+    Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {
 
-            Route::get('/index','DashboardController@index')->name('index');
+        Route::get('/index', 'DashboardController@index')->name('index');
 
 
-            //      category routes
+        //      category routes
 
-            Route::resource('/categories','CategoryController')->except(['show']);
+        Route::resource('/categories', 'CategoryController')->except(['show']);
 
-            //      products routes
+        //      products routes
 
-            Route::resource('/products','ProductController')->except(['show']);
+        Route::resource('/products', 'ProductController')->except(['show']);
 
-            //      client routes
+        //      client routes
 
-            Route::resource('/clients','ClientController')->except(['show']);
-            Route::resource('/clients.orders','Client\OrderController')->except(['show']);
+        Route::resource('/clients', 'ClientController')->except(['show']);
+        Route::resource('/clients.orders', 'Client\OrderController')->except(['show']);
 
-            //      order routes
+        //      order routes
 
-            Route::resource('/orders','OrderController')->except(['show']);
-            Route::get('/orders/{order}/products','OrderController@products')->name('orders.products');
+        Route::resource('/orders', 'OrderController')->except(['show']);
+        Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
 
-            //      user routes
+        //      user routes
 
-            Route::resource('/users','UserController')->except(['show']);
-        });
+        Route::resource('/users', 'UserController')->except(['show']);
+    });
 });
 

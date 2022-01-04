@@ -103,7 +103,7 @@
                                 <h5>@lang('site.no_data')</h5>
                             @endif
 
-
+                                {{$orders->links()}}
                         </div><!-- end of box body -->
 
                     </div><!-- end of box -->
@@ -131,7 +131,6 @@
                             </div>
 
                         </div><!-- end of box body -->
-
                     </div><!-- end of box -->
 
                 </div><!-- end of col -->

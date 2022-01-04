@@ -12,13 +12,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create(Client $client)
+    public function create(Client $client )
     {
 
         $categories = Category::with('products')->get();

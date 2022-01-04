@@ -142,18 +142,6 @@
 
                     </div><!-- end of box -->
 
-                    @if ($client->orders->count() > 0)
-
-                        <div class="box box-primary">
-
-                            <div class="box-header">
-
-                                <h3 class="box-title" style="margin-bottom: 10px">@lang('site.previous_orders')
-                                    <small>{{ $orders->total() }}</small>
-                                </h3>
-
-                            </div><!-- end of box header -->
-
                             @if ($client->orders->count() > 0)
 
                                 <div class="box box-primary">
@@ -168,8 +156,9 @@
 
                                     <div class="box-body">
 
-
                                         <div class="panel-group">
+
+                                            @foreach($orders as $order)
 
                                             <div class="panel panel-success">
 
@@ -199,8 +188,9 @@
 
                                             </div><!-- end of panel primary -->
 
-                                        </div><!-- end of panel group -->
+                                            @endforeach
 
+                                        </div><!-- end of panel group -->
 
                                     </div><!-- end of box body -->
 
@@ -209,8 +199,6 @@
                             @endif
 
                         </div><!-- end of box -->
-
-                    @endif
 
                 </div><!-- end of col -->
 

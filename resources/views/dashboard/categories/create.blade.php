@@ -26,46 +26,46 @@
 
                 @include('partials._errors')
 
-                <form action="{{route('dashboard.categories.store')}}" method="post">
+                <form action="{{route('dashboard.categories.store')}}" style=" padding: 1em;" method="post">
 
                     {{csrf_field()}}
                     {{method_field('post')}}
 
-                    @foreach(config('translatable.locales') as $local)
-                        <div class="form-group">
-                            <label>{{__('site.' . $local . '.name')}}</label>
-                            <input type="text" name="{{$local}}[name]" class="form-control" value="{{old('name')}}">
-                        </div>
-                    @endforeach
-
-{{--                    @php--}}
-{{--                        $models=['users', 'categories','products'];--}}
-{{--                        $maps=['create', 'read','update','delete'];--}}
-{{--                    @endphp--}}
-{{--                    <div class="form-group">--}}
-{{--                        <label>{{__('site.permissions')}}</label>--}}
-{{--                        <div class="nav-tabs-custom">--}}
-{{--                            <ul class="nav nav-pills ml-auto p-2">--}}
-{{--                                @foreach($models as $index=>$model)--}}
-{{--                                    <li class="{{ $index == 0 ? 'active' : ''}}"><a href="#{{$model}}"--}}
-{{--                                                                                    data-toggle="tab">{{__('site.'. $model)}}</a>--}}
-{{--                                    </li>--}}
-{{--                                @endforeach--}}
-{{--                            </ul>--}}
+{{--                    @foreach(config('translatable.locales') as $local)--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label>{{__('site.' . $local . '.name')}}</label>--}}
+{{--                            <input type="text" name="{{$local}}[name]" class="form-control" value="{{old('name')}}">--}}
 {{--                        </div>--}}
+{{--                    @endforeach--}}
 
-{{--                    </div>--}}
 
-{{--                    <div class="tab-content">--}}
-{{--                        @foreach($models as $index=>$model)--}}
-{{--                            <div class="tab-pane {{ $index == 0 ? 'active' : ''}}" id="{{$model}}">--}}
-{{--                            @foreach($maps as $map)--}}
-{{--                                <label><input type="checkbox" name="permissions[]" value="{{$model.'_'.$map}}">{{__('site.'.$map)}}</label>--}}
-{{--                        @endforeach--}}
-{{--                            </div>--}}
-
-{{--                        @endforeach--}}
-{{--                    </div>--}}
+                        <div class="col-12">
+                            <!-- Custom Tabs -->
+                            <div class="card">
+                                <div class="card-header d-flex p-0">
+                                    <ul class="nav nav-pills ml-auto p-2">
+                                        <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">{{__('site.arabic')}}</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">{{__('site.english')}}</a></li>
+                                    </ul>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active form-group"  id="tab_1">
+                                            <label>{{__('site.' . 'ar' . '.name')}}</label>
+                                            <input type="text" name="{{'ar'}}[name]" class="form-control" value="{{old('name')}}">
+                                        </div>
+                                            <!-- /.tab-pane -->
+                                            <div class="tab-pane form-group" id="tab_2">
+                                                <label>{{__('site.' . 'en' . '.name')}}</label>
+                                                <input type="text" name="{{'en'}}[name]" class="form-control" value="{{old('name')}}">
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                                <!-- ./card -->
+                            </div>
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>{{__('site.add')}}
