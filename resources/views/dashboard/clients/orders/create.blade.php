@@ -154,43 +154,59 @@
 
                             </div><!-- end of box header -->
 
-                            <div class="box-body">
+                            @if ($client->orders->count() > 0)
 
-                                @foreach ($orders as $order)
+                                <div class="box box-primary">
 
-                                    <div class="panel-group">
+                                    <div class="box-header">
 
-                                        <div class="panel panel-success">
+                                        <h3 class="box-title" style="margin-bottom: 10px">@lang('site.previous_orders')
+                                            <small>{{ $orders->total() }}</small>
+                                        </h3>
 
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" href="#{{ $order->created_at->format('d-m-Y-s') }}">{{ $order->created_at->toFormattedDateString() }}</a>
-                                                </h4>
-                                            </div>
+                                    </div><!-- end of box header -->
 
-                                            <div id="{{ $order->created_at->format('d-m-Y-s') }}" class="panel-collapse collapse">
+                                    <div class="box-body">
 
-                                                <div class="panel-body">
 
-                                                    <ul class="list-group">
-                                                        @foreach ($order->products as $product)
-                                                            <li class="list-group-item">{{ $product->name }}</li>
-                                                        @endforeach
-                                                    </ul>
+                                        <div class="panel-group">
 
-                                                </div><!-- end of panel body -->
+                                            <div class="panel panel-success">
 
-                                            </div><!-- end of panel collapse -->
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse"
+                                                           href="#{{ $order->created_at->format('d-m-Y-s') }}">{{ $order->created_at->toFormattedDateString() }}</a>
+                                                    </h4>
+                                                </div>
 
-                                        </div><!-- end of panel primary -->
+                                                <div
+                                                    id="{{ $order->created_at->format('d-m-Y-s') }}"
+                                                    class="panel-collapse collapse">
 
-                                    </div><!-- end of panel group -->
+                                                    <div class="panel-body">
 
-                                @endforeach
+                                                        <ul class="list-group">
+                                                            @foreach ($order->product as $product)
+                                                                <li class="list-group-item">{{ $product->name }} ({{__('site.price')}}:{{$product->sale_price }}) {{__('site.quantity')}} {{$product->pivot->quanities}}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        {{__('site.total')}} ({{$order->total_price}})
 
-                                {{ $orders->links() }}
+                                                    </div><!-- end of panel body -->
 
-                            </div><!-- end of box body -->
+                                                </div><!-- end of panel collapse -->
+
+                                            </div><!-- end of panel primary -->
+
+                                        </div><!-- end of panel group -->
+
+
+                                    </div><!-- end of box body -->
+
+                                </div><!-- end of box -->
+
+                            @endif
 
                         </div><!-- end of box -->
 

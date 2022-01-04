@@ -25,9 +25,9 @@ class Product extends Model
 
     public function getProfitPercentAttribute()
     {
-        $profit =$this->sale_price - $this->purchase_price;
-        $profit_percent= $profit *100/$this->purchase_price;
-        return number_format($profit_percent,2);
+        $profit = $this->sale_price - $this->purchase_price;
+        $profit_percent = $profit * 100 / $this->purchase_price;
+        return number_format($profit_percent, 2);
     }
 
     public function category()
@@ -37,7 +37,7 @@ class Product extends Model
 
     public function order()
     {
-        return $this->belongsToMany(Order::class , 'product_order');
+        return $this->belongsToMany(Order::class, 'product_order');
     }
 
 }

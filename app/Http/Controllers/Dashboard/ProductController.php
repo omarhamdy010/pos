@@ -117,12 +117,12 @@ class ProductController extends Controller
     }
 
 
-    public function destroy(Product $product)
+    public function destroy(Request $request,Product $product)
     {
         if ($product->image != 'default1.png') {
             Storage::disk('public_uploads')->delete('/products_image/' . $product->image);
         }
-
+        ;
         $product->delete();
 
         Session()->flash('success', __('site.deleted_successfully'));

@@ -127,12 +127,13 @@ class UserController extends Controller
     }
 
 
-    public function destroy(User $user)
+    public function destroy(Request $request , User $user)
     {
         if($user->image != 'default.png')
         {
             Storage::disk('public_uploads')->delete('/users_image/'.$user->image);
         }
+        $user = User::find($request->id);
         $user->delete();
 
         Session()->flash('success', __('site.deleted_successfully'));
