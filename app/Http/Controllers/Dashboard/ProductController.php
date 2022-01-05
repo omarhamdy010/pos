@@ -81,24 +81,34 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $rules = [
+
             'category_id' => 'required'
+
         ];
+
         foreach (config('translatable.locales') as $local) {
-            $rules += [$local . '.name' =>  [Rule::unique('product_translations', 'name')->ignore($product->id, 'product_id')]];
+
+            $rules += [$local . '.name' => [Rule::unique('product_translations', 'name')->ignore($product->id, 'product_id')]];
+
             $rules += [$local . '.description' => 'required'];
+
         }
+
         $rules += [
             'purchase_price' => 'required',
             'sale_price' => 'required',
             'stock' => 'required'
         ];
+
         $request->validate($rules);
+
         $data = $request->all();
 
         if ($request->image) {
 
             if ($product->image != 'default1.png')
             {
+
                 Storage::disk('public_uploads')->delete('/products_image/' . $product->image);
             }
             Image::make($request->image)->resize(300, null, function ($constraint) {
@@ -106,6 +116,7 @@ class ProductController extends Controller
                 $constraint->aspectRatio();
 
             })->save(public_path('uploads/products_image/' . $request->image->hashName()));
+
             $data['image'] = $request->image->hashName();
 
         }
@@ -117,12 +128,13 @@ class ProductController extends Controller
     }
 
 
-    public function destroy(Request $request,Product $product)
+    public function destroy(Request $request, Product $product)
     {
-        if ($product->image != 'default1.png') {
+        if ($product->image != 'default1.png')
+        {
             Storage::disk('public_uploads')->delete('/products_image/' . $product->image);
         }
-        ;
+
         $product->delete();
 
         Session()->flash('success', __('site.deleted_successfully'));

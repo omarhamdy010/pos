@@ -36,32 +36,73 @@
                         <select name="category_id" class="form-control">
                             <option value="">{{__('site.all_categories')}}</option>
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}" {{old('category_id') == $category->id? 'selected' : ''}}>{{$category->name}}</option>
+                                <option
+                                    value="{{$category->id}}" {{old('category_id') == $category->id? 'selected' : ''}}>{{$category->name}}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    @foreach(config('translatable.locales') as $local)
-                        <div class="form-group">
-                            <label>{{__('site.'.$local.'.name')}}</label>
-                            <input type="text" name="{{$local}}[name]" class="form-control"
-                                   value="{{old($local.'name')}}">
-                        </div>
+                    {{--                    @foreach(config('translatable.locales') as $local)--}}
+                    {{--                        <div class="form-group">--}}
+                    {{--                            <label>{{__('site.'.$local.'.name')}}</label>--}}
+                    {{--                            <input type="text" name="{{$local}}[name]" class="form-control"--}}
+                    {{--                                   value="{{old($local.'name')}}">--}}
+                    {{--                        </div>--}}
 
-                        <div class="form-group">
-                            <label>{{__('site.'.$local.'.description')}}</label>
-                            <textarea name="{{$local}}[description]"
-                                      class="form-control ckeditor ">{{old($local.'description')}}</textarea>
+                    {{--                        <div class="form-group">--}}
+                    {{--                            <label>{{__('site.'.$local.'.description')}}</label>--}}
+                    {{--                            <textarea name="{{$local}}[description]"--}}
+                    {{--                                      class="form-control ckeditor ">{{old($local.'description')}}</textarea>--}}
+                    {{--                        </div>--}}
+                    {{--                    @endforeach--}}
+                    <table class="table table-bordered ">
+                        <div class="col-12 panel ">
+                            <!-- Custom Tabs -->
+                            <div class="card panel-body">
+                                <div class="card-header d-flex p-0">
+                                    <ul class="nav nav-pills ml-auto p-2">
+                                        <li class="nav-item"><a class="nav-link active" href="#tab_1"
+                                                                data-toggle="tab">{{__('site.arabic')}}</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#tab_2"
+                                                                data-toggle="tab">{{__('site.english')}}</a></li>
+                                    </ul>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active form-group" id="tab_1">
+                                            <label>{{__('site.'.'ar'.'.name')}}</label>
+                                            <input type="text" name="{{'ar'}}[name]" class="form-control"
+                                                   value="{{old('ar'.'name')}}">
+                                            <label>{{__('site.'.'ar'.'.description')}}</label>
+                                            <textarea name="{{'ar'}}[description]"
+                                                      class="form-control ckeditor ">{{old('ar'.'description')}}</textarea>
+                                        </div>
+                                        <!-- /.tab-pane -->
+                                        <div class="tab-pane form-group" id="tab_2">
+                                            <label>{{__('site.'.'en'.'.name')}}</label>
+                                            <input type="text" name="{{'en'}}[name]" class="form-control"
+                                                   value="{{old('en'.'name')}}">
+                                            <label>{{__('site.'.'en'.'.description')}}</label>
+                                            <textarea name="{{'en'}}[description]"
+                                                      class="form-control ckeditor ">{{old('en'.'description')}}</textarea>
+                                        </div>
+                                        <!-- /.tab-pane -->
+                                    </div>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.card-body -->
+                            </div>
+                            <!-- ./card -->
                         </div>
-                    @endforeach
+                    </table>
 
                     <div class="form-group">
                         <label>{{__('site.image')}}</label>
-                        <input type="file" name="image" class="form-control image" >
+                        <input type="file" name="image" class="form-control image">
                     </div>
 
                     <div class="form-group">
-                        <img src="{{asset('uploads/products_image/default1.png')}}" style="width: 100px;" class="img-thumbnail image-preview">
+                        <img alt="" src="{{asset('uploads/products_image/default1.png')}}" style="width: 100px;"
+                             class="img-thumbnail image-preview">
                     </div>
 
                     <div class="form-group">

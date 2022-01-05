@@ -9,7 +9,8 @@
             <h1>{{__('site.categories')}}</h1>
 
             <ol class="breadcrumb">
-                <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i>{{__('site.dashboard')}}</a>
+                <li>
+                    <a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i>{{__('site.dashboard')}}</a>
                 </li>
                 <li><a href="{{route('dashboard.categories.index')}}">{{__('site.categories')}}</a></li>
                 <li class="active">{{__('site.add')}}</li>
@@ -37,7 +38,6 @@
 {{--                            <input type="text" name="{{$local}}[name]" class="form-control" value="{{old('name')}}">--}}
 {{--                        </div>--}}
 {{--                    @endforeach--}}
-
 
                         <div class="col-12">
                             <!-- Custom Tabs -->
